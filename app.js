@@ -35,21 +35,31 @@ app.use(function(req, res, next) {
     var id = parseInt(req.params.id);
     // console.log(id);
     col.find({'id': id}).toArray(function(error, results) {
-      console.log(results);
+      // console.log(results);
       context.model = results;
       res.render('profile', context);
     });
   });
-  // app.get('/:id', function(req, res) {
-  //   var user = {};
-  //   for (var i = 0; i < data.user.length; i++) {
-  //     user = data.user[i];
-  //     if (user.id == req.params.id) {
-  //       break;
-  //     }
-  //   }
-  //   res.render('profile', user);
-  // });
+
+  app.post('/unemployed', function(req, res) {
+    const col = req.db.collection("workers");
+    context = {};
+    col.find({'job': null}).toArray(function(error, results) {
+      console.log(results);
+      context.model = results;
+      res.render('directory', context);
+    });
+  });
+
+  app.post('/employed', function(req, res) {
+    const col = req.db.collection("workers");
+    context = {};
+    col.find({'job': {$ne: null}}).toArray(function(error, results) {
+      console.log(results);
+      context.model = results;
+      res.render('directory', context);
+    });
+  });
 
   app.listen(3000, function() {
     console.log('Successfully started express application!');

@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <nav>
+      <form class="all-robots" action="/" method="get">
+        <input type="submit" name="all" value="all robots">
+      </form>
+      <form class="unemployed" action="/unemployed" method="post">
+        <input type="submit" name="unemployed" value="unemployed robots">
+      </form>
+      <form class="employed" action="/employed" method="post">
+        <input type="submit" name="employed" value="employed robots">
+      </form>
+    </nav>
     <div class="flex-container">
       {{#model}}
       <a href="{{id}}" class="worker" >
