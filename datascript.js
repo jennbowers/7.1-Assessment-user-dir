@@ -17,13 +17,6 @@ col.insertMany(directory);
 
 
 
-  // col.insertMany([data.users.forEach(function(users) {
-  //   console.log(users);
-  //   return users;
-  // })
-  // ]
-  // );
-
   // since it's javascript it's running asyncronously so we need to call a callback function to give us the results in a format we can read
   // col.find({}).toArray(function(error, results) {
     // console.log(results);
