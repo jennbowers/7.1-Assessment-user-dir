@@ -1,0 +1,23 @@
+{
+  "name": "5.2-assessment-user-dir",
+  "version": "1.0.0",
+  "description": "Week 5 Day 2 assessment, creating a user directory",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "user",
+    "directory"
+  ],
+  "author": "Jenn Bowers",
+  "license": "UNLICENSED",
+  "jshintConfig": {
+    "esversion": 6
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongodb": "^2.2.29",
+    "mustache-express": "^1.2.4"
+  }
+}
