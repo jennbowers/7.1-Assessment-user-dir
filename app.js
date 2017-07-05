@@ -11,24 +11,39 @@ app.engine('mustache', mustacheExpress());
 app.set('views', './views');
 app.set('view engine', 'mustache');
 
-MongoClient.connect("mongodb://localhost:27017/jmbdb", function(error, db) {
-  const col = db.collection("workers");
-  // col.find({}).toArray(function(error, results) {
-    // console.log(results);
-  // });
-  // console.log(col);
+// Mongo middleware
+app.use(function(req, res, next) {
+  MongoClient.connect("mongodb://localhost:27017/jmbdb", function(error, db) {
+    req.db = db;
+    next();
+  });
+});
 
   app.get('/', function(req, res) {
+    const col = req.db.collection("workers");
+    context = {};
     col.find({}).toArray(function(error, results) {
       // console.log(results);
-      res.render('directory', results);
+      context.model = results;
+      res.render('directory', context);
     });
   });
-  //
+
+  app.get('/:id', function(req, res) {
+    const col = req.db.collection("workers");
+    context = {};
+    var id = parseInt(req.params.id);
+    // console.log(id);
+    col.find({'id': id}).toArray(function(error, results) {
+      console.log(results);
+      context.model = results;
+      res.render('profile', context);
+    });
+  });
   // app.get('/:id', function(req, res) {
   //   var user = {};
-  //   for (var i = 0; i < data.users.length; i++) {
-  //     user = data.users[i];
+  //   for (var i = 0; i < data.user.length; i++) {
+  //     user = data.user[i];
   //     if (user.id == req.params.id) {
   //       break;
   //     }
@@ -40,8 +55,6 @@ MongoClient.connect("mongodb://localhost:27017/jmbdb", function(error, db) {
     console.log('Successfully started express application!');
   });
 
-
-});
 
 // OLD PROJECT
 

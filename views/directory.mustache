@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="flex-container">
-      {{#results}}
+      {{#model}}
       <a href="{{id}}" class="worker" >
         <img src={{avatar}}>
         <h3 class="worker-name">{{name}}</h3>
@@ -17,7 +17,7 @@
         <div class="worker-company">{{company}}</div>
         <div class="worker-no-company">{{^company}}{{/company}}</div>
       </a>
-      {{/results}}
+      {{/model}}
     </div>
 
   </body>
